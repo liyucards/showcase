@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #ff6f61, #ff9a00);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        section {
+            margin: 10px 0; /* General margin for sections */
+        }
+        .gallery {
+            margin-top: 10px; /* Gap above the gallery */
+            display: none; /* Initially hidden */
+        }
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            flex: 1; /* Flex grow */
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .gallery-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px; /* Space between grid items */
+            margin-top: 10px;
+        }
+        .gallery-content img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .gallery-content img:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff6f61;
+            color: white;
+        }
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+            .portfolio-grid {
+                flex-direction: column; /* Stack cards vertically */
+            }
+        }
+    </style>
+    <script>
+        function toggleGallery() {
+            const gallerySection = document.getElementById('gallery-content');
+            const galleryButton = document.getElementById('gallery-button');
+            const isVisible = gallerySection.style.display === 'grid';
+
+            // Toggle visibility
+            gallerySection.style.display = isVisible ? 'none' : 'grid';
+            galleryButton.textContent = isVisible ? 'View Gallery' : 'Hide Gallery'; // Change button text
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>My Portfolio</h1>
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>✴ A skilled and adaptable Project Manager with a proven track record of delivering complex projects on time and within budget. Possessing a keen eye for detail and a talent for leading cross-functional teams, I excel at driving initiatives from conception to successful completion. With expertise in project planning, resource management, and risk mitigation, I consistently exceed client expectations and contribute to the overall growth and success of the organization.</p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="portfolio-grid">
+            <div class="card">
+                <button id="gallery-button" class="button" onclick="toggleGallery()">View Gallery</button>
+                <p style="margin-top: 10px; font-style: italic;">Showcasing a collection of beautiful cosmetics.</p>
+            </div>
+        </div>
+        <div id="gallery-content" class="gallery">
+            <div class="gallery-content">
+                <img src="https://via.placeholder.com/150" alt="Cosmetic 1">
+                <img src="https://via.placeholder.com/150" alt="Cosmetic 2">
+                <img src="https://via.placeholder.com/150" alt="Cosmetic 3">
+                <img src="https://via.placeholder.com/150" alt="Cosmetic 4">
+                <img src="https://via.placeholder.com/150" alt="Cosmetic 5">
+                <img src="https://via.placeholder.com/150" alt="Cosmetic 6">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="card">
+            <p>If you'd like to get in touch, feel free to email me at <a href="mailto:diresgashu9228@gmail.com">diresgashu9228@gmail.com</a>.</p>
+            <p>Phone: +251915276128</p>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 My Portfolio</p>
+</footer>
+
+</body>
+</html>
