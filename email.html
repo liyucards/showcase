@@ -10,21 +10,30 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             font-family: Arial, sans-serif;
+            margin: 0;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
         }
         input[type="email"] {
             padding: 10px;
             font-size: 16px;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            width: 250px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        input[type="email"]:focus {
+            border-color: #6a11cb;
+            outline: none;
         }
         button {
             padding: 10px 20px;
@@ -34,28 +43,35 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
         }
         button:hover {
             background-color: #c13532; /* Darker shade for hover */
+            transform: scale(1.05);
         }
         p {
             margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
         }
         .copy-email {
             cursor: pointer;
             color: #007bff;
             text-decoration: underline;
             margin-bottom: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <form id="emailForm" onsubmit="sendEmail(event)">
-        <p>Please copy <span class="copy-email" onclick="copyEmail()">“diresgashu9228@gmail.com”</span> and add this to the compose box:</p>
-        <input type="email" id="email" placeholder="Enter email address" required>
-        <button type="submit">Compose Email</button>
-    </form>
+    <div class="container">
+        <form id="emailForm" onsubmit="sendEmail(event)">
+            <p>Please copy <span class="copy-email" onclick="copyEmail()">“diresgashu9228@gmail.com”</span> and add this to the compose box:</p>
+            <input type="email" id="email" placeholder="Enter email address" required>
+            <button type="submit">Compose Email</button>
+        </form>
+    </div>
 
     <script>
         function copyEmail() {
