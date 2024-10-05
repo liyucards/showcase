@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #db4437; /* Gmail color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #c13532; /* Darker shade for hover */
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .copy-email {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="emailForm" onsubmit="sendEmail(event)">
+        <p>Please copy <span class="copy-email" onclick="copyEmail()">“diresgashu9228@gmail.com”</span> and add this to the compose box:</p>
+        <input type="email" id="email" placeholder="Enter email address" required>
+        <button type="submit">Compose Email</button>
+    </form>
+
+    <script>
+        function copyEmail() {
+            const email = "diresgashu9228@gmail.com";
+            navigator.clipboard.writeText(email)
+                .then(() => {
+                    alert("Email address copied to clipboard!");
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                });
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            window.location.href = `mailto:${email}`;
+        }
+    </script>
+</body>
+</html>
