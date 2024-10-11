@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Account Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .account-number {
+            font-size: 24px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #00ff00;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kal Computers</h1>
+    <div class="account-number">1000180302178</div>
+    <button id="copyButton">Copy Account Number</button>
+    <div class="message" id="successMessage">Successfully copied the account number!</div>
+
+    <script>
+        document.getElementById('copyButton').onclick = function() {
+            const accountNumber = "1000180302178";
+            navigator.clipboard.writeText(accountNumber).then(() => {
+                document.getElementById('successMessage').style.display = 'block';
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        };
+    </script>
+
+</body>
+</html>
