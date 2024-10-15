@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+        }
+        input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        input[type="email"]:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #db4437; /* Gmail color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #c13532; /* Darker shade for hover */
+            transform: scale(1.05);
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .copy-email {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="emailForm" onsubmit="sendEmail(event)">
+            <p>Please copy <span class="copy-email" onclick="copyEmail()">“Haile.mekonnen@wegagenbanksc.com.et”</span> and add this to the compose box:</p>
+            <input type="email" id="email" placeholder="Enter email address" required>
+            <button type="submit">Compose Email</button>
+        </form>
+    </div>
+
+    <script>
+        function copyEmail() {
+            const email = "Haile.mekonnen@wegagenbanksc.com.et";
+            navigator.clipboard.writeText(email)
+                .then(() => {
+                    alert("Email address copied to clipboard!");
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                });
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            window.location.href = `mailto:${email}`;
+        }
+    </script>
+</body>
+</html>
