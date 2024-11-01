@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Form</title>
+    <title>Email Form and Contact Form</title>
     <style>
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             background: linear-gradient(to right, #6a11cb, #2575fc);
             font-family: Arial, sans-serif;
             margin: 0;
+            padding: 20px;
         }
         .container {
             background-color: white;
@@ -20,9 +21,28 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 30px;
             text-align: center;
-            width: 300px;
+            width: 90%;
+            max-width: 400px;
         }
-        input[type="email"] {
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-section {
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s;
+        }
+        .form-section:hover {
+            transform: scale(1.02);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
             padding: 10px;
             font-size: 16px;
             margin-bottom: 10px;
@@ -31,7 +51,8 @@
             width: 100%;
             transition: border-color 0.3s;
         }
-        input[type="email"]:focus {
+        input:focus,
+        textarea:focus {
             border-color: #6a11cb;
             outline: none;
         }
@@ -50,27 +71,37 @@
             background-color: #c13532; /* Darker shade for hover */
             transform: scale(1.05);
         }
-        p {
-            margin-bottom: 10px;
-            font-size: 16px;
-            color: #333;
+        .notification {
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
         }
-        .copy-email {
-            cursor: pointer;
-            color: #007bff;
-            text-decoration: underline;
-            margin-bottom: 10px;
-            font-weight: bold;
+        .error {
+            color: red;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <form id="emailForm" onsubmit="sendEmail(event)">
-            <p>Please copy <span class="copy-email" onclick="copyEmail()">“usethenextdoor@gmail.com”</span> and add this to the compose box:</p>
-            <input type="email" id="email" placeholder="Enter email address" required>
-            <button type="submit">Compose Email</button>
+        <form id="contactForm" onsubmit="sendContact(event)">
+            <div class="form-section">
+                <h3>Send Me Your Contact</h3>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
+                <input type="email" id="contactEmail" placeholder="Email Address" required>
+                <button type="submit">Submit</button>
+                <p class="notification" id="contactNotification"></p>
+            </div>
         </form>
+        
+        <div class="form-section">
+            <h3>Email Me Here</h3>
+            <input type="email" id="email" value="usethenextdoor@gmail.com" required>
+            <input type="text" id="subject" placeholder="Enter email subject" required>
+            <textarea id="body" placeholder="Enter email body" rows="4"></textarea>
+            <button type="submit" onclick="sendEmail(event)">Compose Email</button>
+            <p class="notification" id="emailNotification"></p>
+        </div>
     </div>
 
     <script>
@@ -88,7 +119,31 @@
         function sendEmail(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
-            window.location.href = `mailto:${email}`;
+            const subject = document.getElementById('subject').value;
+            const body = document.getElementById('body').value;
+
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            showNotification('emailNotification', "Email composed successfully!");
+        }
+
+        function sendContact(event) {
+            event.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const contactEmail = document.getElementById('contactEmail').value;
+
+            const message = `Full Name: ${fullName}\nPhone Number: ${phoneNumber}\nEmail: ${contactEmail}`;
+            const telegramLink = `https://t.me/MrSuccessfeul?text=${encodeURIComponent(message)}`;
+            window.open(telegramLink, '_blank'); // Opens the Telegram link in a new tab
+
+            showNotification('contactNotification', "You will be redirected to Telegram!");
+        }
+
+        function showNotification(notificationId, message, isError = false) {
+            const notification = document.getElementById(notificationId);
+            notification.textContent = message;
+            notification.className = isError ? 'notification error' : 'notification';
         }
     </script>
 </body>
