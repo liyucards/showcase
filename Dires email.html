@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form and Contact Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-section {
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s;
+        }
+        .form-section:hover {
+            transform: scale(1.02);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        input:focus,
+        textarea:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #db4437; /* Gmail color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #c13532; /* Darker shade for hover */
+            transform: scale(1.05);
+        }
+        .notification {
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="contactForm" onsubmit="sendContact(event)">
+            <div class="form-section">
+                <h3>Send Me Your Contact</h3>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
+                <input type="email" id="contactEmail" placeholder="Email Address" required>
+                <input type="text" id="Companyname" placeholder="Companyname" required>
+                <button type="submit">Submit</button>
+                <p class="notification" id="contactNotification"></p>
+            </div>
+        </form>
+        
+        <div class="form-section">
+            <h3>Email Me Here</h3>
+            <input type="email" id="email" value="lemmagfoundation@gmail.com" required>
+            <input type="text" id="subject" placeholder="Enter email subject" required>
+            <textarea id="body" placeholder="Enter email body" rows="4"></textarea>
+            <button type="submit" onclick="sendEmail(event)">Compose Email</button>
+            <p class="notification" id="emailNotification"></p>
+        </div>
+    </div>
+
+    <script>
+        function copyEmail() {
+            const email = "lemmagfoundation@gmail.com";
+            navigator.clipboard.writeText(email)
+                .then(() => {
+                    alert("Email address copied to clipboard!");
+                })
+                .catch(err => {
+                    console.error("Failed to copy: ", err);
+                });
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const body = document.getElementById('body').value;
+
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            showNotification('emailNotification', "Email composed successfully!");
+        }
+
+        function sendContact(event) {
+            event.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const contactEmail = document.getElementById('contactEmail').value;
+            const Companyname = document.getElementById('Companyname').value;
+
+            const message = `Full Name: ${fullName}\nPhone Number: ${phoneNumber}\nEmail: ${contactEmail}\nCompany: ${companyName}`;
+            const telegramLink = `https://t.me/lemma_guya_foundation?text=${encodeURIComponent(message)}`;
+            window.open(telegramLink, '_blank'); // Opens the Telegram link in a new tab
+
+            showNotification('contactNotification', "You will be redirected to Telegram!");
+        }
+
+        function showNotification(notificationId, message, isError = false) {
+            const notification = document.getElementById(notificationId);
+            notification.textContent = message;
+            notification.className = isError ? 'notification error' : 'notification';
+        }
+    </script>
+</body>
+</html>
