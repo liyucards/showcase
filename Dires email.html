@@ -97,7 +97,7 @@
         
         <div class="form-section">
             <h3>Email Me Here</h3>
-            <input type="email" id="email" value="lemmagfoundation@gmail.com" required>
+            <input type="email" id="email" value="diresgashu9228@gmail.com" required>
             <input type="text" id="subject" placeholder="Enter email subject" required>
             <textarea id="body" placeholder="Enter email body" rows="4"></textarea>
             <button type="submit" onclick="sendEmail(event)">Compose Email</button>
@@ -107,7 +107,7 @@
 
     <script>
         function copyEmail() {
-            const email = "lemmagfoundation@gmail.com";
+            const email = "diresgashu9228@gmail.com";
             navigator.clipboard.writeText(email)
                 .then(() => {
                     alert("Email address copied to clipboard!");
@@ -136,7 +136,7 @@
             const Companyname = document.getElementById('Companyname').value;
 
             const message = `Full Name: ${fullName}\nPhone Number: ${phoneNumber}\nEmail: ${contactEmail}\nCompany: ${companyName}`;
-            const telegramLink = `https://t.me/lemma_guya_foundation?text=${encodeURIComponent(message)}`;
+            const telegramLink = `https://t.me/yabtse1?text=${encodeURIComponent(message)}`;
             window.open(telegramLink, '_blank'); // Opens the Telegram link in a new tab
 
             showNotification('contactNotification', "You will be redirected to Telegram!");
