@@ -89,7 +89,6 @@
                 <input type="text" id="fullName" placeholder="Full Name" required>
                 <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
                 <input type="email" id="contactEmail" placeholder="Email Address" required>
-                <input type="text" id="Companyname" placeholder="Companyname" required>
                 <button type="submit">Submit</button>
                 <p class="notification" id="contactNotification"></p>
             </div>
@@ -133,9 +132,8 @@
             const fullName = document.getElementById('fullName').value;
             const phoneNumber = document.getElementById('phoneNumber').value;
             const contactEmail = document.getElementById('contactEmail').value;
-            const Companyname = document.getElementById('Companyname').value;
 
-            const message = `Full Name: ${fullName}\nPhone Number: ${phoneNumber}\nEmail: ${contactEmail}\nCompany: ${companyName}`;
+            const message = `Full Name: ${fullName}\nPhone Number: ${phoneNumber}\nEmail: ${contactEmail}`;
             const telegramLink = `https://t.me/lemma_guya_foundation?text=${encodeURIComponent(message)}`;
             window.open(telegramLink, '_blank'); // Opens the Telegram link in a new tab
 
